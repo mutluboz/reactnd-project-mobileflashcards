@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-class addCartView extends React.Component {
+class addCardView extends React.Component {
   render() {
     return (
       <View>
@@ -11,4 +11,4 @@ class addCartView extends React.Component {
   }
 }
 
-export default addCartView;
+export default addCardView;

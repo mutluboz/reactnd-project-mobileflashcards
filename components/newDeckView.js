@@ -9,16 +9,7 @@ import {
 } from "react-native";
 import { lightBlue, yellow } from "../utils/colors";
 import { submitDeck } from "../utils/api";
-import AddCartView from "./addCartView";
-
-const stack = StackNavigator({
-  AddCart: {
-    screen: AddCartView,
-    navigationOptions: {
-      title: "Add Cart"
-    }
-  }
-});
+import AddCardView from "./addCardView";
 
 class newDeckView extends React.Component {
   state = {
@@ -29,7 +20,11 @@ class newDeckView extends React.Component {
   handleSubmit = () => {
     this.setState({ submitting: true }, () => {
       submitDeck(this.state.title).then(() => {
-        this.setState({ submitting: false });
+        this.setState({ submitting: false }, () => {
+          this.props.navigation.navigate("AddCard", {
+            title: this.state.title
+          });
+        });
       });
     });
   };

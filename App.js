@@ -1,17 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View, Platform, StatusBar } from "react-native";
-import { TabNavigator } from "react-navigation";
+import { TabNavigator, StackNavigator } from "react-navigation";
 import { white, purple, lightBlue } from "./utils/colors";
 import { submitDeck } from "./utils/api";
 import { AsyncStorage } from "react-native";
 import DeckList from "./components/deckList/deckList";
 import NewDeckView from "./components/newDeckView";
-
-const Goodbye = () => (
-  <View>
-    <Text>Goodbye!</Text>
-  </View>
-);
+import AddCardView from "./components/addCardView";
 
 const Tabs = TabNavigator(
   {
@@ -31,7 +26,7 @@ const Tabs = TabNavigator(
   {
     navigationOptions: {
       header: null,
-      swipeEnabled: false,
+      swipeEnabled: false
       // tabBarOnPress: () => alert("hi")
     },
     tabBarOptions: {
@@ -52,6 +47,22 @@ const Tabs = TabNavigator(
   }
 );
 
+const StackNav = StackNavigator({
+  Home: {
+    screen: Tabs
+  },
+  AddCard: {
+    screen: AddCardView,
+    navigationOptions: {
+      title: "Add Cart",
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: lightBlue
+      }
+    }
+  }
+});
+
 export default class App extends React.Component {
   componentDidMount() {
     AsyncStorage.clear(); //todo : delete after implementation
@@ -71,7 +82,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <Tabs />;
+    return <StackNav />;
   }
 }
 
