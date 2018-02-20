@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View, Platform, StatusBar } from "react-native";
 import { TabNavigator } from "react-navigation";
 import { white, purple, lightBlue } from "./utils/colors";
+import { submitDeck, getDeckList } from "./utils/api";
+import { AsyncStorage } from "react-native";
 
 const Hello = () => (
   <View>
@@ -53,6 +55,13 @@ const Tabs = TabNavigator(
 );
 
 export default class App extends React.Component {
+  componentDidMount() {
+    AsyncStorage.clear(); //todo : delete after implementation
+    submitDeck("deck1")
+      .then(submitDeck("deck2"))
+      .then(submitDeck("deck3"));
+  }
+
   render() {
     return <Tabs />;
   }
