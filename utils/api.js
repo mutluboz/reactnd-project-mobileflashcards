@@ -4,12 +4,13 @@ import uuid from "uuid";
 const DECK_STORAGE_KEY = "reactnd-project-mobileflashcards:decks";
 
 export const getDeckList = () => {
-  return AsyncStorage.getItem(DECK_STORAGE_KEY);
+  return AsyncStorage.getItem(DECK_STORAGE_KEY).then(data => JSON.parse(data));
 };
 
 export function submitDeck(deckName) {
+  const id = uuid.v4();
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,
-    JSON.stringify({ [uuid.v4()]: deckName })
+    JSON.stringify({ [id]: { key: id, deckName } })
   );
 }

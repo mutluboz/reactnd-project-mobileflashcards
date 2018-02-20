@@ -2,14 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View, Platform, StatusBar } from "react-native";
 import { TabNavigator } from "react-navigation";
 import { white, purple, lightBlue } from "./utils/colors";
-import { submitDeck, getDeckList } from "./utils/api";
+import { submitDeck } from "./utils/api";
 import { AsyncStorage } from "react-native";
-
-const Hello = () => (
-  <View>
-    <Text>Hello!</Text>
-  </View>
-);
+import DeckList from "./components/deckList/deckList";
 
 const Goodbye = () => (
   <View>
@@ -20,7 +15,7 @@ const Goodbye = () => (
 const Tabs = TabNavigator(
   {
     DeckList: {
-      screen: Hello,
+      screen: DeckList,
       navigationOptions: {
         tabBarLabel: "Decks"
       }
@@ -59,7 +54,17 @@ export default class App extends React.Component {
     AsyncStorage.clear(); //todo : delete after implementation
     submitDeck("deck1")
       .then(submitDeck("deck2"))
-      .then(submitDeck("deck3"));
+      .then(submitDeck("deck4"))
+      .then(submitDeck("deck5"))
+      .then(submitDeck("deck6"))
+      .then(submitDeck("deck7"))
+      .then(submitDeck("deck8"))
+      .then(submitDeck("deck9"))
+      .then(submitDeck("deck10"))
+      .then(submitDeck("deck11"))
+      .then(submitDeck("deck12"))
+      .then(submitDeck("deck13"))
+      .then(submitDeck("deck14"));
   }
 
   render() {
