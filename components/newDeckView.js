@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput
 } from "react-native";
-import { lightBlue, yellow } from "../utils/colors";
+import { lightBlue, white } from "../utils/colors";
 import { submitDeck } from "../utils/api";
 import AddCardView from "./addCardView";
 
@@ -18,15 +18,17 @@ class newDeckView extends React.Component {
   };
 
   handleSubmit = () => {
-    this.setState({ submitting: true }, () => {
-      submitDeck(this.state.title).then(() => {
-        this.setState({ submitting: false }, () => {
-          this.props.navigation.navigate("Deck", {
-            title: this.state.title
+    if (!this.state.title) alert("Deck name is mandatory!");
+    else
+      this.setState({ submitting: true }, () => {
+        submitDeck(this.state.title).then(() => {
+          this.setState({ submitting: false }, () => {
+            this.props.navigation.navigate("Deck", {
+              title: this.state.title
+            });
           });
         });
       });
-    });
   };
 
   handleTitleChange = title => {
@@ -45,14 +47,13 @@ class newDeckView extends React.Component {
           underlineColorAndroid={lightBlue}
           onChangeText={this.handleTitleChange}
         />
-        <TouchableOpacity style={styles.submitButtonWrapper}>
-          <Button
-            onPress={this.handleSubmit}
-            title="Submit"
-            color={lightBlue}
-            disabled={this.state.submitting}
-          />
-        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={this.handleSubmit}
+          disabled={this.state.submitting}
+        >
+          <Text style={styles.submitBtnText}>Submit</Text>
+      </TouchableOpacity>
       </View>
     );
   }
@@ -67,15 +68,28 @@ const styles = StyleSheet.create({
     margin: 20,
     width: "80%"
   },
-  submitButtonWrapper: {
-    width: "50%"
-  },
   textInput: {
     width: "80%",
     paddingBottom: 5,
     paddingLeft: 5,
     fontSize: 16,
     marginBottom: 20
+  },
+  submitButton: {
+    backgroundColor: lightBlue,
+    padding: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    height: 45,
+    borderRadius: 2,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  submitBtnText: {
+    color: white,
+    fontSize: 22,
+    textAlign: "center"
   }
 });
 

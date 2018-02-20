@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { gray } from "../../utils/colors";
 
 const deckCard = props => {
-  const { deckName, cards = [] } = props;
+  const { onNavigation, deckName, cards = [] } = props;
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => onNavigation && onNavigation(deckName)}>
       <View style={[styles.container]}>
         <Text style={styles.cardHeader}>{deckName}</Text>
         <Text style={styles.cardSubheader}> {`${cards.length} cards`} </Text>

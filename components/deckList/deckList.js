@@ -15,7 +15,16 @@ class deckList extends React.Component {
   }
 
   renderItem = ({ item }) => {
-    return <DeckCard {...item} />;
+    return (
+      <DeckCard
+        onNavigation={deck =>
+          this.props.navigation.navigate("Deck", {
+            title: deck
+          })
+        }
+        {...item}
+      />
+    );
   };
 
   render() {
