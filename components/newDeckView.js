@@ -21,7 +21,7 @@ class newDeckView extends React.Component {
     this.setState({ submitting: true }, () => {
       submitDeck(this.state.title).then(() => {
         this.setState({ submitting: false }, () => {
-          this.props.navigation.navigate("AddCard", {
+          this.props.navigation.navigate("Deck", {
             title: this.state.title
           });
         });

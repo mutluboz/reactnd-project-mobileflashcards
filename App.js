@@ -7,6 +7,7 @@ import { AsyncStorage } from "react-native";
 import DeckList from "./components/deckList/deckList";
 import NewDeckView from "./components/newDeckView";
 import AddCardView from "./components/addCardView";
+import DeckView from "./components/deckView";
 
 const Tabs = TabNavigator(
   {
@@ -47,19 +48,24 @@ const Tabs = TabNavigator(
   }
 );
 
-const StackNav = StackNavigator({
+const stackNavNavigationOptions = {
+  headerTintColor: white,
+  headerStyle: {
+    backgroundColor: lightBlue
+  }
+};
+
+StackNav = StackNavigator({
   Home: {
     screen: Tabs
   },
   AddCard: {
     screen: AddCardView,
-    navigationOptions: {
-      title: "Add Cart",
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: lightBlue
-      }
-    }
+    navigationOptions: stackNavNavigationOptions
+  },
+  Deck: {
+    screen: DeckView,
+    navigationOptions: stackNavNavigationOptions
   }
 });
 

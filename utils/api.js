@@ -7,10 +7,14 @@ export const getDeckList = () => {
   return AsyncStorage.getItem(DECK_STORAGE_KEY).then(data => JSON.parse(data));
 };
 
+export const getDeck = deck => {
+  return getDeckList().then(data => data[deck]);
+};
+
 export function submitDeck(deckName) {
   const id = uuid.v4();
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,
-    JSON.stringify({ [id]: { key: id, deckName } })
+    JSON.stringify({ [deckName]: { key: deckName, deckName } })
   );
 }
