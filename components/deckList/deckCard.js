@@ -4,7 +4,7 @@ import { gray } from "../../utils/colors";
 
 const deckCard = props => {
   const { deckName, cards = [] } = props;
-  // console.log(props);
+  
   return (
     <TouchableOpacity>
       <View style={[styles.container]}>

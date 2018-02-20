@@ -5,6 +5,7 @@ import { white, purple, lightBlue } from "./utils/colors";
 import { submitDeck } from "./utils/api";
 import { AsyncStorage } from "react-native";
 import DeckList from "./components/deckList/deckList";
+import NewDeckView from "./components/newDeckView";
 
 const Goodbye = () => (
   <View>
@@ -21,7 +22,7 @@ const Tabs = TabNavigator(
       }
     },
     NewDeck: {
-      screen: Goodbye,
+      screen: NewDeckView,
       navigationOptions: {
         tabBarLabel: "New Deck"
       }
@@ -29,7 +30,9 @@ const Tabs = TabNavigator(
   },
   {
     navigationOptions: {
-      header: null
+      header: null,
+      swipeEnabled: false,
+      // tabBarOnPress: () => alert("hi")
     },
     tabBarOptions: {
       activeTintColor: purple,
