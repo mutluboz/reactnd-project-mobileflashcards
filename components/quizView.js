@@ -85,6 +85,18 @@ class quizView extends React.Component {
         >
           <Text style={styles.btnText}>Go Back</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.btn, { backgroundColor: lightBlue }]}
+          onPress={() => {
+            this.setState({
+              currentQuestion: 0,
+              displayAnswer: false,
+              correctCount: 0
+            });
+          }}
+        >
+          <Text style={styles.btnText}>Restart</Text>
+        </TouchableOpacity>
       </View>
     );
   }
