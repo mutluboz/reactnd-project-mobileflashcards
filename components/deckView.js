@@ -15,7 +15,7 @@ class DeckView extends React.Component {
   });
 
   render() {
-    return this.props.deck.questions ? (
+    return (
       <View style={{ flex: 1 }}>
         <DeckCard {...this.props.deck} />
         <TouchableOpacity
@@ -49,10 +49,6 @@ class DeckView extends React.Component {
           <Text style={styles.btnText}>Start Quiz</Text>
         </TouchableOpacity>
       </View>
-    ) : (
-      <View>
-        <Text>as</Text>
-      </View>
     );
   }
 }
@@ -81,9 +77,8 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state, ownProps) {
-  console.log("state................." + state);
   return {
-    deck: state ? state[ownProps.navigation.state.params.title] : {}
+    deck: state[ownProps.navigation.state.params.title]
   };
 }
 

@@ -14,11 +14,13 @@ export function fetchDecks() {
   };
 }
 
-export function createDeck(deckName) {
+export function createDeck(deckName, successCallback) {
   return dispatch => {
-    FlashCardApi.submitDeck(deckName).then(deck => {
-      dispatch({ type: CREATE_DECK, deck });
-    });
+    FlashCardApi.submitDeck(deckName)
+      .then(deck => {
+        dispatch({ type: CREATE_DECK, deck });
+      })
+      .then(() => successCallback());
   };
 }
 

@@ -3,6 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { lightBlue, white, green, red } from "../utils/colors";
 
 class quizView extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: `${navigation.state.params.deck.key} Quiz`
+  });
+
   state = {
     currentQuestion: 0,
     displayAnswer: false,

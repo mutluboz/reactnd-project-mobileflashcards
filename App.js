@@ -84,7 +84,6 @@ StackNav = StackNavigator({
 export default class App extends React.Component {
   componentDidMount() {
     setLocalNotification();
-    AsyncStorage.clear();
   }
 
   render() {
