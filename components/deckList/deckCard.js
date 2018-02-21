@@ -10,8 +10,7 @@ const deckCard = props => {
       <View style={[styles.container]}>
         <Text style={styles.cardHeader}>{deckName}</Text>
         <Text style={styles.cardSubheader}>
-          {" "}
-          {`${questions && questions.length} cards`}{" "}
+          {`${questions && questions.length} cards`}
         </Text>
       </View>
     </TouchableOpacity>

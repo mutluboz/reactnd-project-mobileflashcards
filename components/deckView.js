@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import DeckCard from "./deckList/deckCard";
 import { getDeck } from "../utils/api";
-import { lightBlue, white } from "../utils/colors";
+import { lightBlue, white, disabledGray } from "../utils/colors";
 import { connect } from "react-redux";
 import { fetchDeck } from "../actions";
 
@@ -26,9 +26,17 @@ class DeckView extends React.Component {
           <Text style={styles.btnText}>Add Card</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.btn}
+          style={[
+            styles.btn,
+            {
+              backgroundColor:
+                !this.props.deck || this.props.deck.questions.length === 0
+                  ? disabledGray
+                  : lightBlue
+            }
+          ]}
           // onPress={this.handleSubmit}
-          // disabled={this.state.submitting}
+          disabled={!this.props.deck || this.props.deck.questions.length === 0}
         >
           <Text style={styles.btnText}>Start Quiz</Text>
         </TouchableOpacity>
