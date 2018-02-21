@@ -8,6 +8,12 @@ import DeckList from "./components/deckList/deckList";
 import NewDeckView from "./components/newDeckView";
 import AddCardView from "./components/addCardView";
 import DeckView from "./components/deckView";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import reducer from "./reducers";
+import ReduxThunk from "redux-thunk";
+
+const store = createStore(reducer, applyMiddleware(ReduxThunk));
 
 const Tabs = TabNavigator(
   {
@@ -88,7 +94,11 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <StackNav />;
+    return (
+      <Provider store={store}>
+        <StackNav />
+      </Provider>
+    );
   }
 }
 

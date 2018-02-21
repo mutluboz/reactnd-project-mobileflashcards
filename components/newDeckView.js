@@ -8,8 +8,9 @@ import {
   TextInput
 } from "react-native";
 import { lightBlue, white } from "../utils/colors";
-import { submitDeck } from "../utils/api";
+import { createDeck } from "../actions";
 import AddCardView from "./addCardView";
+import { connect } from "react-redux";
 
 class newDeckView extends React.Component {
   state = {
@@ -22,12 +23,12 @@ class newDeckView extends React.Component {
     else {
       const currTitle = this.state.title;
       this.setState({ submitting: true }, () => {
-        submitDeck(this.state.title).then(() => {
-          this.setState({ submitting: false, title: "" }, () => {
-            this.props.navigation.navigate("Deck", {
-              title: currTitle
-            });
-          });
+        this.props.submitDeck(currTitle);
+      });
+
+      this.setState({ submitting: false, title: "" }, () => {
+        this.props.navigation.navigate("Deck", {
+          title: currTitle
         });
       });
     }
@@ -96,4 +97,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default newDeckView;
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    submitDeck: title => dispatch(createDeck(title))
+  };
+}
+
+export default connect(null, mapDispatchToProps)(newDeckView);

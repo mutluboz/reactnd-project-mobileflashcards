@@ -1,17 +1,12 @@
 import React from "react";
 import DeckCard from "./deckCard";
 import { View, Text, FlatList } from "react-native";
-import { getDeckList } from "../../utils/api";
+import { connect } from "react-redux";
+import { fetchDecks } from "../../actions";
 
 class deckList extends React.Component {
-  state = {
-    decks: {}
-  };
-
   componentDidMount() {
-    getDeckList().then(deckList => {
-      this.setState({ decks: deckList });
-    });
+    this.props.getDecks();
   }
 
   renderItem = ({ item }) => {
@@ -28,7 +23,7 @@ class deckList extends React.Component {
   };
 
   render() {
-    const { decks } = this.state;
+    const { decks } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <FlatList data={Object.values(decks)} renderItem={this.renderItem} />
@@ -37,4 +32,16 @@ class deckList extends React.Component {
   }
 }
 
-export default deckList;
+function mapStateToProps(state) {
+  return {
+    decks: state
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getDecks: () => dispatch(fetchDecks())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(deckList);
