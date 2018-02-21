@@ -19,16 +19,18 @@ class newDeckView extends React.Component {
 
   handleSubmit = () => {
     if (!this.state.title) alert("Deck name is mandatory!");
-    else
+    else {
+      const currTitle = this.state.title;
       this.setState({ submitting: true }, () => {
         submitDeck(this.state.title).then(() => {
-          this.setState({ submitting: false }, () => {
+          this.setState({ submitting: false, title: "" }, () => {
             this.props.navigation.navigate("Deck", {
-              title: this.state.title
+              title: currTitle
             });
           });
         });
       });
+    }
   };
 
   handleTitleChange = title => {
@@ -43,6 +45,7 @@ class newDeckView extends React.Component {
         </Text>
         <TextInput
           style={styles.textInput}
+          value={this.state.title}
           maxLength={30}
           underlineColorAndroid={lightBlue}
           onChangeText={this.handleTitleChange}
@@ -53,7 +56,7 @@ class newDeckView extends React.Component {
           disabled={this.state.submitting}
         >
           <Text style={styles.submitBtnText}>Submit</Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
       </View>
     );
   }

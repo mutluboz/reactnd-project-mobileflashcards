@@ -25,7 +25,11 @@ class DeckView extends React.Component {
         <DeckCard {...this.state.deck} />
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => this.props.navigation.navigate("AddCard")}
+          onPress={() =>
+            this.props.navigation.navigate("AddCard", {
+              deck: this.props.navigation.state.params.title
+            })
+          }
         >
           <Text style={styles.btnText}>Add Card</Text>
         </TouchableOpacity>
