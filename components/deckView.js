@@ -4,10 +4,6 @@ import DeckCard from "./deckList/deckCard";
 import { lightBlue, white, disabledGray } from "../utils/colors";
 import { connect } from "react-redux";
 import { fetchDeck } from "../actions";
-import {
-  clearLocalNotification,
-  setLocalNotification
-} from "../utils/localPush";
 
 class DeckView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -39,7 +35,6 @@ class DeckView extends React.Component {
             }
           ]}
           onPress={() => {
-            clearLocalNotification().then(setLocalNotification);
             this.props.navigation.navigate("Quiz", {
               deck: this.props.deck
             });

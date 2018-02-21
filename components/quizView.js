@@ -1,6 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { lightBlue, white, green, red } from "../utils/colors";
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from "../utils/localPush";
 
 class quizView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -21,6 +25,8 @@ class quizView extends React.Component {
 
     if (this.state.currentQuestion === totalCardCount) finished = true;
     else card = deck.questions[this.state.currentQuestion];
+
+    if (finished) clearLocalNotification().then(setLocalNotification);
 
     return !finished ? (
       <View style={[{ flex: 1 }, styles.container]}>
