@@ -22,15 +22,17 @@ class newDeckView extends React.Component {
     if (!this.state.title) alert("Deck name is mandatory!");
     else {
       const currTitle = this.state.title;
-      this.setState({ submitting: true }, () => {
-        this.props.submitDeck(currTitle);
-      });
+      this.props.submitDeck(currTitle);
 
-      this.setState({ submitting: false, title: "" }, () => {
-        this.props.navigation.navigate("Deck", {
-          title: currTitle
-        });
-      });
+      // this.setState({ submitting: true }, () => {
+      //   this.props.submitDeck(currTitle);
+      // });
+
+      // this.setState({ submitting: false, title: "" }, () => {
+      //   this.props.navigation.navigate("Deck", {
+      //     title: currTitle
+      //   });
+      // });
     }
   };
 
@@ -98,8 +100,16 @@ const styles = StyleSheet.create({
 });
 
 function mapDispatchToProps(dispatch, ownProps) {
+  console.log(ownProps.navigation);
   return {
-    submitDeck: title => dispatch(createDeck(title))
+    submitDeck: title =>
+      dispatch(
+        createDeck(title).then(
+          ownProps.navigation.navigate("Deck", {
+            title
+          })
+        )
+      )
   };
 }
 

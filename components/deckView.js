@@ -1,10 +1,13 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import DeckCard from "./deckList/deckCard";
-import { getDeck } from "../utils/api";
 import { lightBlue, white, disabledGray } from "../utils/colors";
 import { connect } from "react-redux";
 import { fetchDeck } from "../actions";
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from "../utils/localPush";
 
 class DeckView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -12,7 +15,7 @@ class DeckView extends React.Component {
   });
 
   render() {
-    return (
+    return this.props.deck.questions ? (
       <View style={{ flex: 1 }}>
         <DeckCard {...this.props.deck} />
         <TouchableOpacity
@@ -35,15 +38,20 @@ class DeckView extends React.Component {
                   : lightBlue
             }
           ]}
-          onPress={() =>
+          onPress={() => {
+            clearLocalNotification().then(setLocalNotification);
             this.props.navigation.navigate("Quiz", {
               deck: this.props.deck
-            })
-          }
+            });
+          }}
           disabled={!this.props.deck || this.props.deck.questions.length === 0}
         >
           <Text style={styles.btnText}>Start Quiz</Text>
         </TouchableOpacity>
+      </View>
+    ) : (
+      <View>
+        <Text>as</Text>
       </View>
     );
   }
@@ -73,8 +81,9 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state, ownProps) {
+  console.log("state................." + state);
   return {
-    deck: state[ownProps.navigation.state.params.title]
+    deck: state ? state[ownProps.navigation.state.params.title] : {}
   };
 }
 

@@ -1,74 +1,18 @@
-Requirements
-**************************************************
-Deck oluşturabilmeliyim
-Bir deck sonsuz sayıda flashcard içerebilmeli
-Flashcard oluşturabilmeliyim.
-Flashcardı istediğim decke atayabilmeliyim
-Flashcardın ön yüzü 
-	soruyu gösteriyor
-	arka yüzü cevabı gösteriyor
-	
-Kullanıcılar belirli bir deck için quiz yapabilmeli.
-Quizin sonunda puanını görebilmeli
+#Udacity Mobile Flashcards Project
 
-Kullanıcı o gün çalışmamışsa notification almalı
+ Mobile Flashcards is a project from Udacity's React Nanodegree course. This is an app that lets users to create decks and question cards and quiz themselves using cards.
 
-Views
-***************************************************
-DeckList
-	DeckTitle
-	# of cards
+ Application is created by using create-react-native-app and expo.
 
-Deck
-	header section
-	*****************
-	title of deck
-	#of cards
-	start quiz
-	add new cards
-	list of cards in deck ( optional)
-	*****************
-	
-Quiz
-	Quiz sorusu göster
-	(cevabı gösterme seçeği --> kartı ters çevirecek)
-	Correct Button
-	Incorrect Button
-	# of cards left in the quiz
-	% complete of quiz
+Installation&running app;
 
-New Deck
-	Enter title of new deck
-	Submit title
+1) Run npm install or yarn install
+2) Execute npm start or yarn start to start app
+3) Launch expo on your mobile phone or use simulator
 
-New Card
-	question and answer textboxes
-	submit button
-	
-Technical Requirements
-***************************************************
-	use asnyc storage for data
-	{
-  React: {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-}
+Features;
+ * Users can create infinite number of decks
+ * Users can create infinite number of cards for spesific deck
+ * Users can start a quiz for selected deck
+ * A local notification is displayed everyday at 8:00 pm if user haven't started a quiz for 
+   current day yet.

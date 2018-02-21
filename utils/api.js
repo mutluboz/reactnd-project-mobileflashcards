@@ -14,10 +14,7 @@ export function submitDeck(deckName) {
   const deck = {
     key: deckName,
     deckName,
-    questions: [
-      { question: "Does React Native work with Android?", answer: "YES!" },
-      { question: "aaaaa", answer: "bbbbbb" }
-    ]
+    questions: []
   };
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,

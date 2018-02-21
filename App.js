@@ -13,6 +13,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import reducer from "./reducers";
 import ReduxThunk from "redux-thunk";
 import QuizView from "./components/quizView";
+import { setLocalNotification } from "./utils/localPush";
 
 const store = createStore(reducer, applyMiddleware(ReduxThunk));
 
@@ -82,20 +83,8 @@ StackNav = StackNavigator({
 
 export default class App extends React.Component {
   componentDidMount() {
-    AsyncStorage.clear(); //todo : delete after implementation
-    submitDeck("deck1")
-      .then(submitDeck("deck2"))
-      .then(submitDeck("deck4"))
-      .then(submitDeck("deck5"))
-      .then(submitDeck("deck6"))
-      .then(submitDeck("deck7"))
-      .then(submitDeck("deck8"))
-      .then(submitDeck("deck9"))
-      .then(submitDeck("deck10"))
-      .then(submitDeck("deck11"))
-      .then(submitDeck("deck12"))
-      .then(submitDeck("deck13"))
-      .then(submitDeck("deck14"));
+    setLocalNotification();
+    AsyncStorage.clear();
   }
 
   render() {

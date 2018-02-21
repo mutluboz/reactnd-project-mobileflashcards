@@ -44,7 +44,8 @@ class quizView extends React.Component {
             this.setState(prevState => {
               return {
                 currentQuestion: prevState.currentQuestion + 1,
-                correctCount: prevState.correctCount + 1
+                correctCount: prevState.correctCount + 1,
+                displayAnswer: false
               };
             });
           }}
@@ -55,7 +56,10 @@ class quizView extends React.Component {
           style={[styles.btn, { backgroundColor: red }]}
           onPress={() => {
             this.setState(prevState => {
-              return { currentQuestion: prevState.currentQuestion + 1 };
+              return {
+                currentQuestion: prevState.currentQuestion + 1,
+                displayAnswer: false
+              };
             });
           }}
         >
@@ -75,7 +79,7 @@ class quizView extends React.Component {
             });
           }}
         >
-          <Text style={styles.btnText}>Correct</Text>
+          <Text style={styles.btnText}>Go Back</Text>
         </TouchableOpacity>
       </View>
     );
