@@ -6,7 +6,7 @@ const NOTIFICATION_KEY = "reactnd-project-mobileflashards:notifications";
 
 export function getDailyReminderValue() {
   return {
-    today: "Don't forget to excersize today!"
+    today: "Don't forget to exercise today!"
   };
 }
 
@@ -19,7 +19,7 @@ export function clearLocalNotification() {
 function createNotification() {
   return {
     title: "Excersize!",
-    body: "Don't forget to excersize today!",
+    body: "Don't forget to exercise today!",
     ios: {
       sound: true
     },
