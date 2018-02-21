@@ -12,3 +12,11 @@ export function fetchDecks() {
     });
   };
 }
+
+export function createDeck(deckName) {
+  return dispatch => {
+    FlashCardApi.submitDeck(deckName).then(deck => {
+      dispatch({ type: CREATE_DECK, deck });
+    });
+  };
+}

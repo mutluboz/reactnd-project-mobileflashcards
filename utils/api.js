@@ -1,5 +1,4 @@
 import { AsyncStorage } from "react-native";
-import uuid from "uuid";
 
 const DECK_STORAGE_KEY = "reactnd-project-mobileflashcards:decks";
 
@@ -12,11 +11,11 @@ export const getDeck = deck => {
 };
 
 export function submitDeck(deckName) {
-  const id = uuid.v4();
+  const deck = { key: deckName, deckName, questions: [] };
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,
-    JSON.stringify({ [deckName]: { key: deckName, deckName, questions: [] } })
-  );
+    JSON.stringify({ [deckName]: deck })
+  ).then(data => deck);
 }
 
 export function addCardToDeck(deck, card) {
