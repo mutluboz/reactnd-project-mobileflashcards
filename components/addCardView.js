@@ -7,7 +7,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import { lightBlue, white } from "../utils/colors";
-import { addCardToDeck } from "../utils/api";
+import { createCard } from "../actions";
+import { connect } from "react-redux";
 
 class addCardView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -24,7 +25,7 @@ class addCardView extends React.Component {
     if (!this.state.question) alert("Question is mandatory!");
     else if (!this.state.answer) alert("Answer is mandatory!");
 
-    addCardToDeck(deck, {
+    this.props.addCardToDeck(deck, {
       question: this.state.question,
       answer: this.state.answer
     });
@@ -105,4 +106,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default addCardView;
+function mapDispatchToProps(dispatch) {
+  return {
+    addCardToDeck: (deck, card) => dispatch(createCard(deck, card))
+  };
+}
+
+export default connect(null, mapDispatchToProps)(addCardView);

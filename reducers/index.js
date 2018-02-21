@@ -12,6 +12,17 @@ function Decks(state = {}, action) {
         [deck.key]: deck
       };
     }
+    case FlashCardActions.CREATE_CARD: {
+      const { deck, card } = action;
+
+      return {
+        ...state,
+        [deck]: {
+          ...state[deck],
+          questions: state[deck].questions.concat([card])
+        }
+      };
+    }
     default:
       return state;
   }

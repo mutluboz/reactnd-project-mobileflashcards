@@ -3,18 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import DeckCard from "./deckList/deckCard";
 import { getDeck } from "../utils/api";
 import { lightBlue, white } from "../utils/colors";
+import { connect } from "react-redux";
+import { fetchDeck } from "../actions";
 
 class DeckView extends React.Component {
-  state = {
-    deck: {}
-  };
-
-  componentDidMount() {
-    getDeck(this.props.navigation.state.params.title).then(deck =>
-      this.setState({ deck })
-    );
-  }
-
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.title}`
   });
@@ -22,7 +14,7 @@ class DeckView extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <DeckCard {...this.state.deck} />
+        <DeckCard {...this.props.deck} />
         <TouchableOpacity
           style={styles.btn}
           onPress={() =>
@@ -68,4 +60,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DeckView;
+function mapStateToProps(state, ownProps) {
+  return {
+    deck: state[ownProps.navigation.state.params.title]
+  };
+}
+
+export default connect(mapStateToProps)(DeckView);

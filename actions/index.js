@@ -3,6 +3,7 @@ import * as FlashCardApi from "../utils/api";
 export const FETCH_DECKS = "FETCH_DECKS";
 export const CREATE_DECK = "CREATE_DECK";
 export const CREATE_CARD = "CREATE_CARD";
+export const FETCH_DECK = "FETCH_DECK";
 export const GET_CARDS = "GET_CARDS";
 
 export function fetchDecks() {
@@ -18,5 +19,12 @@ export function createDeck(deckName) {
     FlashCardApi.submitDeck(deckName).then(deck => {
       dispatch({ type: CREATE_DECK, deck });
     });
+  };
+}
+
+export function createCard(deck, card) {
+  return dispatch => {
+    FlashCardApi.addCardToDeck(deck, card);
+    dispatch({ type: CREATE_CARD, deck, card });
   };
 }
