@@ -78,9 +78,7 @@ class quizView extends React.Component {
         <TouchableOpacity
           style={[styles.btn, { backgroundColor: lightBlue }]}
           onPress={() => {
-            this.props.navigation.navigate("Deck", {
-              title: deck.key
-            });
+            this.props.navigation.goBack();
           }}
         >
           <Text style={styles.btnText}>Go Back</Text>
