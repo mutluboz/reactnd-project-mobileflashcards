@@ -23,9 +23,24 @@ export function submitDeck(deckName) {
 }
 
 export function addCardToDeck(deck, card) {
-  getDeck(deck).then(d => {
-    if (d) {
-      d.questions.push(card);
-    }
+  getDeckList().then(data => {
+    AsyncStorage.setItem(
+      DECK_STORAGE_KEY,
+      JSON.stringify({
+        ...data,
+        [deck]: {
+          ...data[deck],
+          questions: data[deck].questions.concat([card])
+        }
+      })
+    );
   });
+  // getDeck(deck).then(d => {
+  //   if (d) {
+  //     AsyncStorage.mergeItem(
+  //       DECK_STORAGE_KEY,
+
+  //     d.questions.concat([card]);
+  //   }
+  // });
 }
