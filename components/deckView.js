@@ -35,7 +35,11 @@ class DeckView extends React.Component {
                   : lightBlue
             }
           ]}
-          // onPress={this.handleSubmit}
+          onPress={() =>
+            this.props.navigation.navigate("Quiz", {
+              deck: this.props.deck
+            })
+          }
           disabled={!this.props.deck || this.props.deck.questions.length === 0}
         >
           <Text style={styles.btnText}>Start Quiz</Text>

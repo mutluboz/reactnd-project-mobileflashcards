@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reducer from "./reducers";
 import ReduxThunk from "redux-thunk";
+import QuizView from "./components/quizView";
 
 const store = createStore(reducer, applyMiddleware(ReduxThunk));
 
@@ -71,6 +72,10 @@ StackNav = StackNavigator({
   },
   Deck: {
     screen: DeckView,
+    navigationOptions: stackNavNavigationOptions
+  },
+  Quiz: {
+    screen: QuizView,
     navigationOptions: stackNavNavigationOptions
   }
 });

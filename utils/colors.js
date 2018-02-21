@@ -9,3 +9,4 @@ export const pink = "#b93fb3";
 export const lightBlue = "#02b3e4";
 export const yellow = "#FFFF00";
 export const disabledGray = "#d3d3d3";
+export const green = "#23DB2A";
