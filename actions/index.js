@@ -28,5 +28,6 @@ export function createCard(deck, card) {
   return dispatch => {
     FlashCardApi.addCardToDeck(deck, card);
     dispatch({ type: CREATE_CARD, deck, card });
+    return Promise.resolve();
   };
 }

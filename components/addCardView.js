@@ -29,16 +29,6 @@ class addCardView extends React.Component {
       question: this.state.question,
       answer: this.state.answer
     });
-
-    this.setState({ question: "" }, () => {
-      this.setState({ answer: "" }, () => {
-        alert(
-          "Card added to " +
-            deck +
-            "! You can add more cards or go back to your deck"
-        );
-      });
-    });
   };
 
   render() {
@@ -106,9 +96,10 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
-    addCardToDeck: (deck, card) => dispatch(createCard(deck, card))
+    addCardToDeck: (deck, card) =>
+      dispatch(createCard(deck, card)).then(ownProps.navigation.goBack())
   };
 }
 
